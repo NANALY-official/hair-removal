@@ -752,14 +752,65 @@ button {
   font-weight: 700;
   padding: 4px 18px;
   border-radius: var(--radius-pill);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+.hero-price-inline-card .price-regular-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.hero-price-inline-card .regular-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  background: rgba(8, 50, 62, 0.06);
+  padding: 1px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.hero-price-inline-card .regular-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #728490;
+}
+
+.hero-price-inline-card .regular-price del {
+  color: #728490;
+  text-decoration: line-through;
+  text-decoration-color: #c93b3b;
+  text-decoration-thickness: 1.5px;
+}
+
+.hero-price-inline-card .regular-tax {
+  font-size: 0.78rem;
+  color: #8898a3;
+  margin-left: 2px;
+}
+
+.hero-price-inline-card .discount-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-en), var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #c93b3b;
+  background: #fdf2f2;
+  border: 1px solid rgba(201, 59, 59, 0.25);
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
 }
 
 .hero-price-inline-card .price-display-row {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .hero-price-inline-card .price-label {
@@ -776,11 +827,14 @@ button {
   gap: 2px;
 }
 
-.hero-price-inline-card .circle-placeholder {
-  font-size: 2.2rem;
+.hero-price-inline-card .circle-placeholder,
+.hero-price-inline-card .price-num {
+  font-family: var(--font-en);
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--primary-navy);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .hero-price-inline-card .price-unit {
@@ -901,8 +955,60 @@ button {
   font-weight: 700;
   padding: 5px 22px;
   border-radius: var(--radius-pill);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   letter-spacing: 0.04em;
+}
+
+.price-regular-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.regular-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  background: rgba(8, 50, 62, 0.06);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.regular-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #728490;
+}
+
+.regular-price del {
+  color: #728490;
+  text-decoration: line-through;
+  text-decoration-color: #c93b3b;
+  text-decoration-thickness: 1.5px;
+}
+
+.regular-tax {
+  font-size: 0.8rem;
+  color: #8898a3;
+  margin-left: 2px;
+}
+
+.discount-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-en), var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #c93b3b;
+  background: #fdf2f2;
+  border: 1px solid rgba(201, 59, 59, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
 }
 
 .price-display-row {
@@ -928,12 +1034,13 @@ button {
   gap: 3px;
 }
 
-.circle-placeholder {
+.circle-placeholder,
+.price-num {
   font-family: var(--font-en);
   font-size: 2.9rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary-navy);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   line-height: 1;
 }
 
@@ -958,14 +1065,25 @@ button {
   .price-digits {
     gap: 2px;
   }
-  .circle-placeholder {
+  .circle-placeholder,
+  .price-num {
     font-size: 2.2rem;
   }
   .price-unit {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .price-label {
     font-size: 1rem;
+  }
+  .price-regular-row {
+    gap: 5px;
+  }
+  .regular-price {
+    font-size: 0.9rem;
+  }
+  .discount-badge {
+    font-size: 0.7rem;
+    padding: 1px 6px;
   }
 }
 

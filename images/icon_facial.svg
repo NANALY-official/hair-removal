@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Outer circular background -->
+  <circle cx="50" cy="50" r="47" fill="#ffffff" fill-opacity="0.95" stroke="#e0e6ea" stroke-width="1.5" />
+  
+  <!-- Woman Face Illustration (Dark Navy: #15394b) -->
+  <g stroke="#15394b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Hair outline / outer contour -->
+    <path d="M 54 22 C 36 21, 23 33, 20 53 C 18 64, 21 74, 27 77" fill="none" />
+    <path d="M 57 23 C 65 26, 70 33, 71 49 C 72 59, 70 68, 64 77" fill="none" />
+    
+    <!-- Bangs / parted hair -->
+    <path d="M 38 29 C 45 42, 53 37, 61 46" fill="none" />
+    <path d="M 47 34 C 41 44, 32 46, 28 53" fill="none" />
+    
+    <!-- Face outline (cheeks & chin) -->
+    <path d="M 28 52 C 28 66, 42 70, 48 70 C 54 70, 64 66, 64 52" fill="none" />
+    
+    <!-- Neck -->
+    <path d="M 39 71 C 39 75, 38 79, 37 81" fill="none" />
+    <path d="M 53 71 C 53 75, 54 79, 56 81" fill="none" />
+    
+    <!-- Closed eyes (relaxed arches) -->
+    <path d="M 35 52 C 37 54, 40 54, 42 52" fill="none" />
+    <path d="M 52 52 C 54 54, 57 54, 59 52" fill="none" />
+    
+    <!-- Smile -->
+    <path d="M 43 62 C 45 64, 47 64, 49 62" fill="none" />
+  </g>
+
+  <!-- Sparkle on right -->
+  <path d="M 75 51 C 75 54.5, 72 57, 68.5 57 C 72 57, 75 59.5, 75 63 C 75 59.5, 78 57, 81.5 57 C 78 57, 75 54.5, 75 51 Z" fill="#15394b" />
+  <circle cx="64" cy="67" r="1.5" fill="#15394b" />
+
+  <!-- Gold/Amber Cross (×) -->
+  <g stroke="#cca054" stroke-width="4.8" stroke-linecap="round">
+    <line x1="18" y1="22" x2="78" y2="82" />
+    <line x1="78" y1="22" x2="18" y2="82" />
+  </g>
+</svg>

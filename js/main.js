@@ -103,12 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const inquiryForm = document.getElementById('inquiryForm');
   const userNameInput = document.getElementById('userName');
   const userEmailInput = document.getElementById('userEmail');
+  const userTelInput = document.getElementById('userTel');
+  const submitBtn = document.getElementById('submitBtn');
   const modalBackdrop = document.getElementById('modalBackdrop');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
+  };
+
+  const validateTel = (tel) => {
+    const cleaned = tel.replace(/[-\s]/g, '');
+    return /^0\d{9,10}$/.test(cleaned);
   };
 
   if (inquiryForm) {
@@ -134,16 +141,73 @@ document.addEventListener('DOMContentLoaded', () => {
         emailGroup.classList.remove('has-error');
       }
 
-      if (!hasError) {
-        // Show success modal
-        if (modalBackdrop) {
-          modalBackdrop.classList.add('is-active');
+      // Validate Tel
+      if (userTelInput) {
+        const telGroup = userTelInput.closest('.form-group');
+        const telError = document.getElementById('telError');
+        const val = userTelInput.value.trim();
+        if (!val) {
+          if (telError) telError.textContent = '電話番号を入力してください';
+          telGroup.classList.add('has-error');
+          hasError = true;
+        } else if (!validateTel(val)) {
+          if (telError) telError.textContent = '正しい電話番号を入力してください（例: 090-1234-5678）';
+          telGroup.classList.add('has-error');
+          hasError = true;
+        } else {
+          telGroup.classList.remove('has-error');
         }
-        // Reset form
-        inquiryForm.reset();
-        // Reset radio button to default
-        const defaultRadio = inquiryForm.querySelector('input[name="inquiry_type"][value="価格"]');
-        if (defaultRadio) defaultRadio.checked = true;
+      }
+
+      if (!hasError) {
+        // 送信ボタンを送信中状態にする（二重送信防止）
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>送信中...</span>';
+        }
+
+        const formData = new FormData(inquiryForm);
+
+        fetch(inquiryForm.action || 'https://formspree.io/f/mjygnzoq', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            // Show success modal
+            if (modalBackdrop) {
+              modalBackdrop.classList.add('is-active');
+            }
+            // Reset form
+            inquiryForm.reset();
+            // Reset radio button to default
+            const defaultRadio = inquiryForm.querySelector('input[name="inquiry_type"][value="価格"]');
+            if (defaultRadio) defaultRadio.checked = true;
+          } else {
+            return response.json().then(data => {
+              if (data && Object.hasOwn(data, 'errors')) {
+                const errorMsg = data.errors.map(err => err.message).join(', ');
+                alert(`送信に失敗しました: ${errorMsg}`);
+              } else {
+                alert('送信に失敗しました。時間をおいて再度お試しいただくか、直接ご連絡ください。');
+              }
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Submission error:', error);
+          alert('通信エラーが発生しました。インターネット接続をご確認の上、再度お試しください。');
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+        });
       }
     });
 
@@ -170,6 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
         userEmailInput.closest('.form-group').classList.remove('has-error');
       }
     });
+
+    if (userTelInput) {
+      userTelInput.addEventListener('input', () => {
+        if (validateTel(userTelInput.value.trim())) {
+          userTelInput.closest('.form-group').classList.remove('has-error');
+        }
+      });
+    }
   }
 
   // Close modal

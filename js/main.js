@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ----------------------------------------------------
-  // 2. Interactive Output Level Range Slider (1 - 30)
+  // 2. Interactive Output Level Range Slider (1 - 50)
   // ----------------------------------------------------
   const levelSlider = document.getElementById('levelRangeSlider');
   const levelValueDisplay = document.getElementById('levelValue');
@@ -146,6 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (defaultRadio) defaultRadio.checked = true;
       }
     });
+
+    // Focus textarea when "その他" is selected
+    const otherRadio = inquiryForm.querySelector('input[name="inquiry_type"][value="その他"]');
+    const userMessageInput = document.getElementById('userMessage');
+    if (otherRadio && userMessageInput) {
+      otherRadio.addEventListener('change', () => {
+        if (otherRadio.checked) {
+          userMessageInput.focus();
+        }
+      });
+    }
 
     // Clear error on input
     userNameInput.addEventListener('input', () => {
@@ -263,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !sliderAnimated) {
           sliderAnimated = true;
-          const targetVal = 20;
+          const targetVal = 30;
           const duration = 900;
           const start = performance.now();
 
